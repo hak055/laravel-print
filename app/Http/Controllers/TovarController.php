@@ -13,8 +13,9 @@ class TovarController extends Controller
 {
     public function index()
     {
+    	$marks = Mark::get();
     	$tovars = Tovar::get();
 
-    	return view('tovar', compact('tovars'));
+    	return view('tovar', compact('tovars', 'marks'));
     }
 }
