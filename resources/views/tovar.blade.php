@@ -13,8 +13,8 @@
     <div class="row">
         <div class="col-md-4">
 		    <div class="list-group">
-		    	@foreach($tovars as $tovar)
-				    <a href="#" class="list-group-item">{{$tovar->PhoneModel->Mark->name}}</a>	
+		    	@foreach($marks as $mark)
+				    <a href="#" class="list-group-item">{{$mark->name}}</a>	
 				@endforeach    			
 		    </div>
         </div>
