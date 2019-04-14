@@ -12,9 +12,10 @@
 <div class="container content">
     <div class="row">
         <div class="col-md-4">
+        	<h2>Каталог</h2>
 		    <div class="list-group">
 		    	@foreach($marks as $mark)
-				    <a href="#" class="list-group-item">{{$mark->name}}</a>	
+				    <h3><a href="#" class="list-group-item">{{$mark->name}}</a></h3>
 				@endforeach    			
 		    </div>
         </div>
