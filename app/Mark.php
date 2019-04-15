@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\PhoneModel;
 
+/**
+ * @mixin Mark
+ */
 class Mark extends Model
 {
     public function PhoneModel()
