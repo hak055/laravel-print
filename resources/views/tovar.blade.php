@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	<meta charset="utf-8">
-	<!-- Styles -->
-    <link href="{{ asset('css/tovar.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-</head>
-<body>
-  
+@extends('layouts.app')
+@section('content')
 <div class="container content">
     <div class="row">
         <div class="col-md-4">
@@ -46,6 +37,4 @@
 	</div>		 
 
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-</body>
-</html>
+@endsection
