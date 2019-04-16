@@ -1,4 +1,7 @@
 @extends('layouts.app')
+
+@section('title',('Главная страница'))
+
 @section('content')
 <div class="container content">
     <div class="row">
@@ -16,8 +19,7 @@
 			<div class="row">
 				@foreach($tovars as $tovar)
 				    <div class="col-sm-4">
-						<div class="product">
-							
+						<div class="product">							
 					            <div class="product-img">
 									<a href="#"><img src="img/goods1.jpg" alt=""></a>
 								</div>
@@ -25,8 +27,7 @@
 										<a href="#">{{$tovar->PhoneModel->Mark->name.' '}}</a>
 								    </p>
 								<p class="product-desc">{{$tovar->PhoneModel->name}}</p>
-								<p class="product-price">Price: €10.00</p>
-							
+								<p class="product-price">Price: €10.00</p>							
 						</div>
 				    </div>
 			    @endforeach
