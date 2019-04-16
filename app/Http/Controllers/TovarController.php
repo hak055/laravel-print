@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\Mark;
 use App\Tovar;
 use App\PhoneModel;
-// use App\Print;
+use App\User;
 
 
 class TovarController extends Controller

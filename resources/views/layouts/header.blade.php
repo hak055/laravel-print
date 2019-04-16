@@ -9,9 +9,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
+                    
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -44,6 +42,24 @@
                                 </div>
                             </li>
                         @endguest
+                    </ul>
+
+                    <!-- for admin  -->
+                    <ul class="navbar-nav mr-auto">
+                            @if(Auth::check() and Auth::user()->id === 1)
+                                <li class="nav-item dropdown">
+                                  <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                    Управление <span class="caret"></span>
+                                  </a>
+                                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/">Главная страница</a>
+                                    <a class="dropdown-item" href="/mark">Марка</a>
+                                    <a class="dropdown-item" href="/modelPhone">Модель телефонов</a>
+                                    <a class="dropdown-item" href="/print">Принт</a>
+                                    <a class="dropdown-item" href="/collection">Колекция</a>
+                                  </div>
+                                </li>
+                          @endif
                     </ul>
                 </div>
             </div>

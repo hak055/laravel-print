@@ -21,7 +21,7 @@ class CreatePhoneModelsTable extends Migration
             $table->timestamps();
             $table->foreign('mark_id')
             ->references('id')
-            ->on('marks');
+            ->on('marks')->onDelete('cascade');
         });
     }
 

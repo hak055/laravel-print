@@ -10,6 +10,9 @@ use App\PhoneModel;
  */
 class Mark extends Model
 {
+	protected $fillable = [
+        'name'
+    ];
     public function PhoneModel()
     {
     	return $this->hasMany(PhoneModel::class);
