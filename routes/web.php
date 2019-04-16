@@ -18,7 +18,7 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('mark', 'MarkController');
-    Route::resource('modelPhone', 'PhoneModelController');
+    Route::resource('phoneModel', 'PhoneModelController');
     Route::resource('print', 'PrintController');
     Route::resource('collection', 'CollectionController');
 });

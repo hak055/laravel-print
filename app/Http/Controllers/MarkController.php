@@ -44,7 +44,9 @@ class MarkController extends Controller
        
         return view('admin.marka.edit', compact('mark'));
     }
-
+/*
+* добавление редоктирование
+*/
     public function update(Mark $mark)
     {
         
@@ -55,7 +57,9 @@ class MarkController extends Controller
 
         return redirect()->route('mark.show', $mark);
     }
-
+/*
+* удаление
+*/
     public function destroy(Mark $mark)
     {
         $mark->delete();

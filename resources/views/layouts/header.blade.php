@@ -54,7 +54,7 @@
                                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/">Главная страница</a>
                                     <a class="dropdown-item" href="/mark">Марка</a>
-                                    <a class="dropdown-item" href="/modelPhone">Модель телефонов</a>
+                                    <a class="dropdown-item" href="/phoneModel">Модель телефонов</a>
                                     <a class="dropdown-item" href="/print">Принт</a>
                                     <a class="dropdown-item" href="/collection">Колекция</a>
                                   </div>
