@@ -62,7 +62,7 @@ class PrintController extends Controller
         $print->fill($this->validateWith([
             
             'name' => 'required',
-            'collection_id' => ['nullable', Rule::exists('trucks', 'id')]
+            'collection_id' => ['nullable', Rule::exists('collection', 'id')]
             
         ]))->save();
 
