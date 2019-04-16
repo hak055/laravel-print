@@ -3,14 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Print;
+use App\Printt;
 /**
  * @mixin Collection
  */
 class Collection extends Model
 {
-    public function Print()
+    public function Printt()
     {
-    	return $this->belongsToMany(Print::class, 'print_collections');
+    	return $this->belongsToMany(Printt::class, 'print_collections');
     }
 }

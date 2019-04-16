@@ -9,7 +9,7 @@
   @if($phoneModels->count())
 	  @foreach($phoneModels as $phoneModel)
 	  <div class="list-group-item">
-	  <h2><a href="{{ route('phoneModel.show', $phoneModel) }}">{{$phoneModel->name}}</a></h2>
+	  <h2>{{$phoneModel->mark->name.' '}}-<a href="{{ route('phoneModel.show', $phoneModel) }}">{{$phoneModel->name}}</a></h2>
 	  <a class="bnt btn-primary" href="{{ route('phoneModel.edit', $phoneModel) }}">edit</a>
 	  </div>
 	  @endforeach
