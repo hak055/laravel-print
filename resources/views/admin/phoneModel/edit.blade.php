@@ -38,8 +38,8 @@
                 </div>
                 <div class="form-group">
                     <label for="name">Марка телефона:</label>
-                    <select name="mark_id" >
-                      @foreach($marks as $mark)
+                    <select class="form-control" name="mark_id" >
+                      @foreach($marks as $key => $mark)
                         <option value="{{$mark->id}}">
                             {{$mark->name}}
                         </option>
@@ -48,7 +48,8 @@
                 </div>
                 
               
-                <button type="submit" class="btn btn-primary">SAVE</button>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <a href="{{ route('phoneModel.show', $phoneModel) }}" type="button" class="btn btn-secondary">Отменить</a>
         </form>
       </div>
     </div>

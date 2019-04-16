@@ -38,7 +38,8 @@
                 </div>
                 
               
-                <button type="submit" class="btn btn-primary">SAVE</button>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <a href="{{ route('mark.show', $mark) }}" type="button" class="btn btn-secondary">Отменить</a>
         </form>
       </div>
     </div>
