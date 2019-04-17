@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Auth;
 use App\Tovar;
 use App\Mark;
@@ -16,7 +17,7 @@ class TovarController extends Controller
     public function index()
     {
     	$marks = Mark::get();
-    	$tovars = Tovar::get();
+    	$tovars = Tovar::active()->get();
 
     	return view('tovars.tovar', compact('tovars', 'marks'));
     }
@@ -37,7 +38,7 @@ class TovarController extends Controller
 
     public function show(Tovar $tovar)
     {
-    	return view('tovars.tovar', compact('tovar'));
+    	return view('tovars.show', compact('tovar'));
     }
 
     public function edit(Tovar $tovar)
@@ -50,14 +51,24 @@ class TovarController extends Controller
 
     public function update(Tovar $tovar)
     {
+    	// echo '<pre>';
+    	// dd($tovar);
+    	// echo '</pre>';
     	$tovar->fill($this->validateWith([
             'name' => 'required',
-            'status' => 'required|boolean',
-            'print_id' => 'required',
-            'phone_model_id' => 'required'
+            'status' => 'required',
+            'print_id' => 'required|exists:prints,id',
+            'phone_model_id' => 'required|exists:phone_models,id'
             
         ]))->save();
 
-        return redirect()->route('show', $tovar); 
+        return redirect()->route('tovar.show', $tovar); 
     }
+
+    public function destroy(Tovar $tovar)
+    {
+        $tovar->delete();
+
+        return redirect()->route('mark.index');
+    } 
 }

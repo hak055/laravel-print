@@ -12,7 +12,12 @@
 */
 
 
-Route::resource('/', 'TovarController');
+Route::resource('tovar', 'TovarController')->except([
+    	'index'
+]);
+
+Route::get('/', 'TovarController@index');
+
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {

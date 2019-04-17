@@ -10,9 +10,9 @@
       <div class="card-header clearfix">
         <div class="float-right">
           @if($mark->exists and Auth::user()->id === 1)
-            <a class="text-danger" href="{{ route('mark.destroy', $mark) }}"
+           <!--  <a class="text-danger" href="{{ route('mark.destroy', $mark) }}"
                onclick="event.preventDefault(); if(confirm('@lang('Удалить? будут удалены все модели этой Марки')?')) document.getElementById('destroy-form').submit()"
-            >Delete</a>
+            >Delete</a> -->
             <form id="destroy-form" class="d-none" method="POST"
                   action="{{ route('mark.destroy', $mark) }}">
               @method('DELETE')

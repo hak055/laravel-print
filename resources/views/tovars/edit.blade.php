@@ -8,11 +8,11 @@
       <div class="card-header clearfix">
         <div class="float-right">
           @if($tovar->exists)
-            <a class="text-danger" href="{{ route('fuel_rates.destroy', $fuel_rate) }}"
+            <a class="text-danger" href="{{ route('tovar.destroy', $tovar) }}"
                onclick="event.preventDefault(); if(confirm('@lang('Delete')?')) document.getElementById('destroy-form').submit()"
             >@lang('Delete')</a>
             <form id="destroy-form" class="d-none" method="POST"
-                  action="{{ route('destroy', $tovar) }}">
+                  action="{{ route('tovar.destroy', $tovar) }}">
               @method('DELETE')
               @csrf
             </form>
@@ -20,7 +20,7 @@
         </div>
         
         @if($tovar->exists)
-          <a href="{{ route('show', $tovar) }}">{{ $tovar->name }}</a>
+          <a href="{{ route('tovar.show', $tovar) }}">{{ $tovar->name }}</a>
         @endif
        
       </div>
@@ -28,12 +28,10 @@
 
        <!-- form -->
       	@if($tovar->exists)
-          <form method="post" action="{{ route('update', $tovar) }}">
-            
+          <form method="post" action="{{ route('tovar.update', $tovar) }}">          
             @method('PUT')
-
         @else    
-          <form method="post" action="{{ route('store') }}">
+          <form method="post" action="{{ route('tovar.store') }}">
         @endif    
                {{ csrf_field() }}
                 <div class="form-group">
@@ -42,15 +40,15 @@
                 </div>
                 <div class="form-group">
                     <label for="name">Статус товара:</label>
-                    <select class="form-control" name="printt_id">
+                    <select class="form-control" name="status">
                         <option disabled selected>выберите статус</option>                     
-                        <option value="active">Активный</option>
-                        <option value="inactive">Неактивный</option> 
+                        <option value="1">Активный</option>
+                        <option value="0">Неактивный</option> 
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="name">Принт товара:</label>
-                    <select class="form-control" name="printt_id">
+                    <select class="form-control" name="print_id">
                         <option disabled selected>выберите принт</option>
                        @foreach($printts as $printt)
                         <option value="{{$printt->id}}">
@@ -61,7 +59,7 @@
                 </div>
                 <div class="form-group">
                     <label for="name">Модель товара:</label>
-                    <select class="form-control" name="phoneModel_id">
+                    <select class="form-control" name="phone_model_id">
                         <option disabled selected>выберите модель</option>
                        @foreach($phoneModels as $phoneModel)
                         <option value="{{$phoneModel->id}}">

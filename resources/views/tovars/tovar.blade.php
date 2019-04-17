@@ -8,9 +8,13 @@
         <div class="col-md-4">
         	<h2>Каталог</h2>
 		    <div class="list-group">
-		    	@foreach($marks as $mark)
-				    <h3><a href="{{ route('mark.show', $mark) }}" class="list-group-item">{{$mark->name}}</a></h3>
-				@endforeach    			
+		    	@if($marks->count())
+			    	@foreach($marks as $mark)
+					    <h3><a href="{{ route('mark.show', $mark) }}" class="list-group-item">{{$mark->name}}</a></h3>
+					@endforeach 
+				@else
+					<h5>Каталог пуст</h5>
+				@endif		   			
 		    </div>
         </div>
         
@@ -21,13 +25,14 @@
 				    <div class="col-sm-4">
 						<div class="product">							
 					            <div class="product-img">
-									<a href="#"><img src="#" alt=""></a>
+									<a href=""><img src="#" alt=""></a>
 								</div>
 									<p class="product-title">
 										<a href="">{{$tovar->PhoneModel->Mark->name.' '}}</a>
 								    </p>
 								<p class="product-desc">{{$tovar->PhoneModel->name}}</p>
-								<p class="product-price">Price: €10.00</p>							
+								<p class="product-price">Price: €10.00</p>
+								<a href="{{route('tovar.show', $tovar)}}">{{$tovar->name}}</a>					
 						</div>
 				    </div>
 			    @endforeach

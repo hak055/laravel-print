@@ -79,7 +79,7 @@ class PrintController extends Controller
             }
             
         }
-        return redirect()->route('print.show', $print);  
+        return redirect()->route('print.show', $print);
     }
 /*
 * удаление

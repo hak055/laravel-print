@@ -11,9 +11,9 @@
       <div class="card-header clearfix">
         <div class="float-right">
           @if($print->exists)
-            <a class="text-danger" href="{{ route('print.destroy', $print) }}"
+            <!-- <a class="text-danger" href="{{ route('print.destroy', $print) }}"
                onclick="event.preventDefault(); if(confirm('@lang('Удалить?')?')) document.getElementById('destroy-form').submit()"
-            >Delete</a>
+            >Delete</a> -->
             <form id="destroy-form" class="d-none" method="POST"
                   action="{{ route('print.destroy', $print) }}">
               @method('DELETE')
