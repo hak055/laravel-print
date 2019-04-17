@@ -34,12 +34,12 @@
                {{ csrf_field() }}
                 <div class="form-group">
                     <label for="name">Название Марки телефона:</label>
-                    <input type="text" class="form-control" name="name" value="" placeholder="{{$mark->name}}" required>
+                    <input type="text" class="form-control" name="name" value="{{$mark->exists ? $mark->name : ''}}" placeholder="{{$mark->name}}" required>
                 </div>
                 
               
                 <button type="submit" class="btn btn-primary">Сохранить</button>
-                <a href="{{ route('mark.show', $mark) }}" type="button" class="btn btn-secondary">Отменить</a>
+                <a href="{{ URL('mark') }}" type="button" class="btn btn-secondary">Отменить</a>
         </form>
       </div>
     </div>

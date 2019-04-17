@@ -35,11 +35,12 @@
                {{ csrf_field() }}
                 <div class="form-group">
                     <label for="name">Новый принт:</label>
-                    <input type="text" class="form-control" name="name" value="" placeholder="{{$print->name}}" required>
+                    <input type="text" class="form-control" name="name" value="{{($print->exists ? $print->name : '')}}" placeholder="Введите название принта" required>
                 </div>
                 <div class="form-group">
                     <label for="name">Выбрать колекцию:</label>
                     <select class="form-control" name="collection_id">
+                        <option value="empty">без коллекции</option>
                        @foreach($collections as $collection)
                         <option value="{{$collection->id}}">
                             {{$collection->name}}
@@ -50,7 +51,7 @@
                 
               
                 <button type="submit" class="btn btn-primary">Сохранить</button>
-                <a href="{{ route('print.show', $print) }}" type="button" class="btn btn-secondary">Отменить</a>
+                <a href="{{ URL('print') }}" type="button" class="btn btn-secondary">Отменить</a>
         </form>
       </div>
     </div>

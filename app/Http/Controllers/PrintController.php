@@ -62,11 +62,24 @@ class PrintController extends Controller
         $print->fill($this->validateWith([
             
             'name' => 'required',
-            'collection_id' => ['nullable', Rule::exists('collection', 'id')]
             
         ]))->save();
+//если выбран принт без колекции 
+//при выборе колекции создаем таблицу связи и проверяем на уникальность        
+        if($_POST['collection_id'] != 'empty')
+        {
+            $collection = Collection::find($_POST['collection_id']);
+            if($print->collection->contains($collection))
+            {
+                return redirect()->route('print.show', $print);//значит есть такая запись в таблице collection_printt
+            }else{
+                $print->collection()->save($collection);
 
-        return redirect()->route('print.show', $print);
+                return redirect()->route('print.show', $print);
+            }
+            
+        }
+        return redirect()->route('print.show', $print);  
     }
 /*
 * удаление

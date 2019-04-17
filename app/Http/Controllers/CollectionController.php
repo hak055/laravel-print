@@ -3,79 +3,114 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use App\Printt;
 use App\Collection;
+use App\Printt;
 
 class CollectionController extends Controller
 {
-/*
-* вывод всех моделей телефона
-*/
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $сollections = Printt::get();
-        return view('admin.сollection.index', compact('сollections'));
+        $collections = Collection::get();
+
+        return view('admin.collection.index', compact('collections'));
     }
-/*
-* 
-*/
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        $сollection = new Printt();
-        
-        if(request('collection')) {
-            $сollection->collection()->associate(request('collection'));           
-        };
+        $collection = new Collection();
 
-        return $this->edit($сollection);
+        return $this->edit($collection);
     }
-/*
-* 
-*/
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store()
     {
-        $сollection = new Printt();
+        $collection = new Collection();
 
-        return $this->update($сollection);
-    }
-/*
-* 
-*/
-    public function show(Printt $сollection)
-    {
-        return view('admin.сollection.show', compact('сollection'));
+        return $this->update($collection);
     }
 
-    public function edit(Printt $сollection)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Collection $collection)
     {
-        $collections = Collection::get();
+        return view('admin.collection.show', compact('collection'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Collection $collection)
+    {
+        $printts = Printt::get();
        
-        return view('admin.сollection.edit', compact('print', 'collections'));
+        return view('admin.collection.edit', compact('printts', 'collection'));
     }
-/*
-* добавление редоктирование
-*/
-    public function update(Printt $сollection)
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Collection $collection)
     {
-        
-        $сollection->fill($this->validateWith([
+        $collection->fill($this->validateWith([
             
             'name' => 'required',
-            'collection_id' => ['nullable', Rule::exists('print', 'id')]
             
         ]))->save();
+//если выбран принт без колекции 
+//при выборе колекции создаем таблицу связи и проверяем на уникальность        
+        if($_POST['printt_id'] != 'empty')
+        {
+            $printt = Printt::find($_POST['printt_id']);
+            if($collection->printt->contains($printt))
+            {
+                return redirect()->route('collection.show', $collection);//значит есть такая запись в таблице collection_printt
+            }else{
+                $collection->printt()->save($printt);
 
-        return redirect()->route('сollection.show', $сollection);
+                return redirect()->route('collection.show', $collection);
+            }
+            
+        }
+        return redirect()->route('collection.show', $collection);  
     }
-/*
-* удаление
-*/
-    public function destroy(Printt $сollection)
-    {
-        $сollection->delete();
 
-        return redirect()->route('сollection.index');
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Collection $collection)
+    {
+        $collection->delete();
+
+        return redirect()->route('collection.index');
     }
 }
-

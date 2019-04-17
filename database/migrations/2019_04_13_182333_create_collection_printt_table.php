@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePrintCollectionsTable extends Migration
+class CreateCollectionPrinttTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreatePrintCollectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('print_collections', function (Blueprint $table) {
+        Schema::create('collection_printt', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('print_id')->unsigned();
+            $table->integer('printt_id')->unsigned();
             $table->integer('collection_id')->unsigned();
 
-            $table->foreign('print_id')->references('id')->on('prints');            
-            $table->foreign('collection_id')->references('id')->on('collections');
+            $table->foreign('printt_id')->references('id')->on('prints')->onDelete('cascade');        
+            $table->foreign('collection_id')->references('id')->on('collections')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreatePrintCollectionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('print_collections');
+        Schema::dropIfExists('collection_printt');
     }
 }

@@ -9,8 +9,10 @@ use App\Printt;
  */
 class Collection extends Model
 {
+	protected $guarded = ['id'];
+
     public function Printt()
     {
-    	return $this->belongsToMany(Printt::class, 'print_collections');
+    	return $this->belongsToMany(Printt::class)->withTimestamps();
     }
 }

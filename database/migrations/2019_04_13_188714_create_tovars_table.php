@@ -16,6 +16,7 @@ class CreateTovarsTable extends Migration
         Schema::create('tovars', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->tinyInteger('status');
             $table->integer('print_id')->unsigned();
             $table->integer('phone_model_id')->unsigned();
 
