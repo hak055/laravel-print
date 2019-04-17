@@ -12,7 +12,7 @@
 */
 
 
-Route::get('/', 'TovarController@index');
+Route::resource('/', 'TovarController');
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {

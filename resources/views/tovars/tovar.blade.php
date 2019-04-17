@@ -9,7 +9,7 @@
         	<h2>Каталог</h2>
 		    <div class="list-group">
 		    	@foreach($marks as $mark)
-				    <h3><a href="#" class="list-group-item">{{$mark->name}}</a></h3>
+				    <h3><a href="{{ route('mark.show', $mark) }}" class="list-group-item">{{$mark->name}}</a></h3>
 				@endforeach    			
 		    </div>
         </div>
@@ -21,10 +21,10 @@
 				    <div class="col-sm-4">
 						<div class="product">							
 					            <div class="product-img">
-									<a href="#"><img src="img/goods1.jpg" alt=""></a>
+									<a href="#"><img src="#" alt=""></a>
 								</div>
 									<p class="product-title">
-										<a href="#">{{$tovar->PhoneModel->Mark->name.' '}}</a>
+										<a href="">{{$tovar->PhoneModel->Mark->name.' '}}</a>
 								    </p>
 								<p class="product-desc">{{$tovar->PhoneModel->name}}</p>
 								<p class="product-price">Price: €10.00</p>							

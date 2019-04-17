@@ -9,7 +9,7 @@
     <div class="card card-default mb-3">
       <div class="card-header clearfix">
         <div class="float-right">
-          @if($mark->exists)
+          @if($mark->exists and Auth::user()->id === 1)
             <a class="text-danger" href="{{ route('mark.destroy', $mark) }}"
                onclick="event.preventDefault(); if(confirm('@lang('Удалить? будут удалены все модели этой Марки')?')) document.getElementById('destroy-form').submit()"
             >Delete</a>
