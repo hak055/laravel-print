@@ -7,7 +7,7 @@
     <div class="card card-default mb-3">
       <div class="card-header clearfix">
         <div class="float-right">
-          @if($tovar->exists)
+          @if($tovar->exists and Auth::user()->id === 1)
             <a class="text-danger" href="{{ route('tovar.destroy', $tovar) }}"
                onclick="event.preventDefault(); if(confirm('@lang('Delete')?')) document.getElementById('destroy-form').submit()"
             >@lang('Delete')</a>

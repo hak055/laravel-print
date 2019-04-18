@@ -23,7 +23,9 @@
 					</div>
 				</div>			   
 			</div>
+			@if(Auth::user()->id === 1)
 			<a href="{{route('tovar.edit', $tovar)}}" class="btn btn-secondary">Редактировать</a>
+			@endif
 		</div>
 	</div>
 </div>
