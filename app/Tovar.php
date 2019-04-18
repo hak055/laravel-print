@@ -4,10 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use App\Traits\SaveTrait;
 use App\PhoneModel;
 
 class Tovar extends Model
 {
+    use SaveTrait;
 
 	protected $fillable = [
     		'name',
@@ -20,10 +22,5 @@ class Tovar extends Model
     {   	
 
     	return $this->belongsTo(PhoneModel::class);
-    }
-
-    public function scopeActive(Builder $builder)
-    {
-        $builder->where('status', 1);
     }
 }
