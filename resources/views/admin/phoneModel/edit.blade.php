@@ -9,7 +9,7 @@
     <div class="card card-default mb-3">
       <div class="card-header clearfix">
         <div class="float-right">
-          @if($phoneModel->exists)
+          <!-- @if($phoneModel->exists)
             <a class="text-danger" href="{{ route('phoneModel.destroy', $phoneModel) }}"
                onclick="event.preventDefault(); if(confirm('@lang('Удалить?')?')) document.getElementById('destroy-form').submit()"
             >Delete</a>
@@ -18,7 +18,7 @@
               @method('DELETE')
               @csrf
             </form>
-          @endif
+          @endif -->
         </div>
       </div>
       <div class="card-body">
