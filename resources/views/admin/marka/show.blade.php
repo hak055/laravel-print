@@ -20,4 +20,6 @@
     		{{ $phoneModel->name }}<br>
     @endforeach 
 
+
+
 @endsection

@@ -37,10 +37,8 @@ class MarkController extends Controller
 
     public function show(Mark $mark)
     {
-        //товары определенной марки
-        $tovar_mark = Tovar::where('name', $mark->name)->get();
 
-        return view('admin.marka.show', compact('mark', 'tovar_mark'));
+        return view('admin.marka.show', compact('mark'));
     }
 
     public function edit(Mark $mark)
