@@ -48,24 +48,38 @@
                 </div>
                 <div class="form-group">
                     <label for="name">Принт товара:</label>
-                    <select class="form-control" name="print_id">
+                    @if($printts->count() == 0)
+                    <select class="form-control" name="print_id" onchange="window.location.href=this.options[this.selectedIndex].value">
                         <option disabled selected>выберите принт</option>
-                       @foreach($printts as $printt)
-                        <option value="{{$printt->id}}">
-                            {{$printt->name}}
-                        </option>
-                      @endforeach  
+                        
+                         <option value="/print/create">список пуст,создайте сначала принт</option>
+                        @else 
+                         <select class="form-control" name="print_id">
+                          <option disabled selected>выберите принт</option>
+                           @foreach($printts as $printt)
+                            <option value="{{$printt->id}}">
+                                {{$printt->name}}
+                            </option>
+                          @endforeach
+                        @endif  
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="name">Модель товара:</label>
-                    <select class="form-control" name="phone_model_id">
+                    @if($phoneModels->count() == 0)
+                    <select class="form-control" name="phone_model_id" onchange="window.location.href=this.options[this.selectedIndex].value">
                         <option disabled selected>выберите модель</option>
-                       @foreach($phoneModels as $phoneModel)
-                        <option value="{{$phoneModel->id}}">
-                            {{$phoneModel->name}}
-                        </option>
-                      @endforeach  
+                        
+                         <option value="/phoneModel/create">список пуст,создайте сначала модель</option>
+                        @else 
+                        <select class="form-control" name="phone_model_id">
+                          <option disabled selected>выберите модель</option>
+                           @foreach($phoneModels as $phoneModel)
+                          <option value="{{$phoneModel->id}}">
+                                {{$phoneModel->name}}
+                          </option>
+                          @endforeach
+                        @endif  
                     </select>
                 </div>
                 

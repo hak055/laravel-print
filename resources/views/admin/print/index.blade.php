@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="float">       
-    <a href="{{ route('print.create') }}">Create</a>
+    <a href="{{ route('print.create') }}" class="btn btn-success">Create</a>
 </div>
 <ul class="list-group">
   <h1><li class="list-group-item active">Все Принты</li></h1>
