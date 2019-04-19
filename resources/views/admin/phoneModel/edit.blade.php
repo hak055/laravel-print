@@ -38,13 +38,21 @@
                 </div>
                 <div class="form-group">
                     <label for="name">Марка телефона:</label>
-                    <select class="form-control" name="mark_id" >
+                     <!-- проверка , если марка пустая,сначала нужно создать марку,затем только модель телефона  -->
+                    @if($marks->count() == 0)                       
+                    <select class="form-control" name="mark_id" onchange="window.location.href=this.options[this.selectedIndex].value">
+                      <option disabled selected>Выберите Марку</option>
+                      <option value="{{route('mark.create')}}">Список пуст, создайте сначала Марку</option>
+                    @else
+                    <select class="form-control" name="mark_id">
+                      <option disabled selected>Выберите Марку</option>
                       @foreach($marks as $key => $mark)
                         <option value="{{$mark->id}}">
                             {{$mark->name}}
                         </option>
                       @endforeach  
-                    </select>  
+                    </select>
+                    @endif  
                 </div>
                 
               

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="float">       
-    <a href="{{ route('collection.create') }}">Create</a>
+    <a href="{{ route('collection.create') }}" class="btn btn-success">Create</a>
 </div>
 <ul class="list-group">
   <h1><li class="list-group-item active">Все Колекции</li></h1>
