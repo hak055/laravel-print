@@ -5,7 +5,9 @@
 @section('content')
 <div class="container content">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4" style="
+    background-color: darkseagreen;
+">
         	<h2>Каталог</h2>
 		    <div class="list-group">
 		    	@if($marks->count())
@@ -28,7 +30,7 @@
 									<a href=""><img src="#" alt=""></a>
 								</div>
 									<p class="product-title">
-										<a href="">{{$tovar->PhoneModel->Mark->name.' '}}</a>
+										<a href="{{route('tovar.show', $tovar)}}">{{$tovar->PhoneModel->Mark->name.' '}}</a>
 								    </p>
 								<p class="product-desc">{{$tovar->PhoneModel->name}}</p>
 								<p class="product-price">Price: €10.00</p>

@@ -10,7 +10,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-left">
-                        <a href="/">Главная</a>
+                        <a href="/" class="h1">Главная</a>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -27,7 +27,7 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
@@ -47,7 +47,7 @@
                     </ul>
 
                     <!-- for admin  -->
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav">
                             @if(Auth::check() and Auth::user()->id === 1)
                                 <li class="nav-item dropdown">
                                   <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown">

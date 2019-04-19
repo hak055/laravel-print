@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Mark;
 use App\PhoneModel;
+use App\Tovar;
 
 class MarkController extends Controller
 {
@@ -36,7 +37,10 @@ class MarkController extends Controller
 
     public function show(Mark $mark)
     {
-        return view('admin.marka.show', compact('mark'));
+        //товары определенной марки
+        $tovar_mark = Tovar::where('name', $mark->name)->get();
+
+        return view('admin.marka.show', compact('mark', 'tovar_mark'));
     }
 
     public function edit(Mark $mark)
