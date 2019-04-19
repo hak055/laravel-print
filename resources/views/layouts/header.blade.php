@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+<nav class="navbar navbar-expand-md navbar-white bg-secondary text-white navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -50,7 +50,7 @@
                     <ul class="navbar-nav mr-auto">
                             @if(Auth::check() and Auth::user()->id === 1)
                                 <li class="nav-item dropdown">
-                                  <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                  <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown">
                                     Управление <span class="caret"></span>
                                   </a>
                                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
