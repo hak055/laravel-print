@@ -42,8 +42,8 @@
                     <label for="name">Статус товара:</label>
                     <select class="form-control" name="status">
                         <option disabled selected>выберите статус</option>                     
-                        <option value="1">Активный</option>
-                        <option value="0">Неактивный</option> 
+                        <option value="10">Активный</option>
+                        <option value="1">Неактивный</option> 
                     </select>
                 </div>
                 <div class="form-group">

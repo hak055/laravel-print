@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Database\Eloquent\Builder;
 use Auth;
 use App\Tovar;
 use App\Mark;
@@ -17,7 +18,10 @@ class TovarController extends Controller
     public function index()
     {
     	$marks = Mark::get();
-    	$tovars = Tovar::active()->get();
+    	$tovars = Tovar::when(request('status'), function (Builder $builder, $status) {
+                        return $builder->where('status', '=', $status ?? 0);
+                        
+            })->get();
 
     	return view('tovars.tovar', compact('tovars', 'marks'));
     }
