@@ -18,7 +18,7 @@
 		    </div>
         </div>
         
-	    <div class="col-md-8">
+	    <div class="col-md-8">	    	
 	        <div class="row">
 	            @foreach($tovars as $tovar)
 	                <div class="col-sm-4">
