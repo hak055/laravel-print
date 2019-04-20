@@ -68,9 +68,9 @@
                         <div class="float-right">
                             <select name="status" class="form-control" onchange="with (this) document.location.href=options [selectedIndex].value">
                               <option value="/" {{ request('status') ? '' : 'selected' }}>Все товары</option>                         
-                              <option value="/?status=1" {{ '1' == request('status') ? 'selected' : '' }}>Активне</option>
-                              <option value="/?status=0" {{ '0' == request('status') ? 'selected' : '' }}>Нективне</option>    
-                            </select> 
+                              <option value="/?status=10" {{ '10' == request('status') ? 'selected' : '' }}>Активне</option>
+                              <option value="/?status=1" {{ '1' == request('status') ? 'selected' : '' }}>Нективне</option>    
+                            </select>
                         </div>
                          @endif
                     </ul>
