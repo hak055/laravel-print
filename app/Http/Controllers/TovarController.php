@@ -18,6 +18,7 @@ class TovarController extends Controller
     public function index()
     {
     	$marks = Mark::get();
+   	
     	$tovars = Tovar::when(request('status'), function (Builder $builder, $status) {
                         return $builder->where('status', '=', $status ?? 0);
                         
