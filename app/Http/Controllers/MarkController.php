@@ -9,17 +9,18 @@ use App\Tovar;
 
 class MarkController extends Controller
 {
-/*
-* вывод всех моделей телефона
-*/
+    /*
+    * вывод всех моделей телефона
+    */
     public function index()
     {
-    	$marks = Mark::get();
-    	return view('admin.marka.index', compact('marks'));
+        $marks = Mark::get();
+        return view('admin.marka.index', compact('marks'));
     }
-/*
-* вывод всех моделей
-*/
+
+    /*
+    * вывод всех моделей
+    */
     public function create()
     {
         $mark = new Mark();
@@ -43,25 +44,27 @@ class MarkController extends Controller
 
     public function edit(Mark $mark)
     {
-       
+
         return view('admin.marka.edit', compact('mark'));
     }
-/*
-* добавление редоктирование
-*/
+
+    /*
+    * добавление редоктирование
+    */
     public function update(Mark $mark)
     {
-        
+
         $mark->fill($this->validateWith([
-            
+
             'name' => 'required',
         ]))->save();
 
         return redirect()->route('mark.show', $mark);
     }
-/*
-* удаление
-*/
+
+    /*
+    * удаление
+    */
     public function destroy(Mark $mark)
     {
         $mark->delete();
