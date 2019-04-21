@@ -8,17 +8,18 @@ use App\Mark;
 
 class PhoneModelController extends Controller
 {
-/*
-* вывод всех моделей телефона
-*/
+    /*
+    * вывод всех моделей телефона
+    */
     public function index()
     {
-    	$phoneModels = PhoneModel::get();
-    	return view('admin.phoneModel.index', compact('phoneModels'));
+        $phoneModels = PhoneModel::get();
+        return view('admin.phoneModel.index', compact('phoneModels'));
     }
-/*
-* 
-*/
+
+    /*
+    *
+    */
     public function create()
     {
         $phoneModel = new PhoneModel();
@@ -26,18 +27,20 @@ class PhoneModelController extends Controller
 
         return $this->edit($phoneModel);
     }
-/*
-* 
-*/
+
+    /*
+    *
+    */
     public function store()
     {
         $phoneModel = new PhoneModel();
 
         return $this->update($phoneModel);
     }
-/*
-* 
-*/
+
+    /*
+    *
+    */
     public function show(PhoneModel $phoneModel)
     {
         return view('admin.phoneModel.show', compact('phoneModel'));
@@ -45,27 +48,29 @@ class PhoneModelController extends Controller
 
     public function edit(PhoneModel $phoneModel)
     {
-    	$marks = Mark::get();
-       
+        $marks = Mark::get();
+
         return view('admin.phoneModel.edit', compact('phoneModel', 'marks'));
     }
-/*
-* добавление редоктирование
-*/
+
+    /*
+    * добавление редоктирование
+    */
     public function update(PhoneModel $phoneModel)
     {
-        
+
         $phoneModel->fill($this->validateWith([
-            
+
             'name' => 'required',
             'mark_id' => 'required|exists:marks,id'
         ]))->save();
 
         return redirect()->route('phoneModel.show', $phoneModel);
     }
-/*
-* удаление
-*/
+
+    /*
+    * удаление
+    */
     public function destroy(PhoneModel $phoneModel)
     {
         $phoneModel->delete();

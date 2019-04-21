@@ -35,7 +35,7 @@ class CollectionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store()
@@ -48,7 +48,7 @@ class CollectionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show(Collection $collection)
@@ -59,52 +59,50 @@ class CollectionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Collection $collection)
     {
         $printts = Printt::get();
-       
+
         return view('admin.collection.edit', compact('printts', 'collection'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Collection $collection)
     {
         $collection->fill($this->validateWith([
-            
+
             'name' => 'required',
-            
+
         ]))->save();
 //если выбран принт без колекции 
 //при выборе колекции создаем таблицу связи и проверяем на уникальность        
-        if($_POST['printt_id'] != 'empty')
-        {
+        if ($_POST['printt_id'] != 'empty') {
             $printt = Printt::find($_POST['printt_id']);
-            if($collection->printt->contains($printt))
-            {
+            if ($collection->printt->contains($printt)) {
                 return redirect()->route('collection.show', $collection);//значит есть такая запись в таблице collection_printt
-            }else{
+            } else {
                 $collection->printt()->save($printt);
 
                 return redirect()->route('collection.show', $collection);
             }
-            
+
         }
-        return redirect()->route('collection.show', $collection);  
+        return redirect()->route('collection.show', $collection);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Collection $collection)
