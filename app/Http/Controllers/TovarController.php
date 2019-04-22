@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use function foo\func;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Database\Eloquent\Builder;
@@ -19,7 +20,9 @@ class TovarController extends Controller
     {
         $marks = Mark::get();
 
-        $tovars = Tovar::when(request('status'), function (Builder $builder, $status) {
+        $tovars = Tovar::when(Auth::id() != 1, function (Builder $builder){
+            return $builder->where('status', '=', '10');
+        })->when(request('status'), function (Builder $builder, $status) {
             return $builder->where('status', '=', $status ?? 0);
 
         })->get();
