@@ -54,6 +54,7 @@
                                     Управление <span class="caret"></span>
                                   </a>
                                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                  	<a class="dropdown-item warning" href="/admin">Панель управления</a>
                                     <a class="dropdown-item warning" href="/tovar/create">Новый товар</a>
                                     <a class="dropdown-item" href="/">Главная страница</a>
                                     <a class="dropdown-item" href="/mark">Марка</a>
