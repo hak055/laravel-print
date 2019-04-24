@@ -1,4 +1,6 @@
-Настройка проекта
+## Настройка проекта
+
+Laravel, use Voyager for Admin Package
 
 . composer install
 
@@ -6,9 +8,7 @@
 
 . php artisan key:generate
 
-. php artisan migrate
-
-. php artisan db:seed --class=UsersTableSeeder
+. laravel-print.sql импорт данных
 
 . login: admin@mail.ru
 . password: administrator
