@@ -47,7 +47,8 @@ class TovarController extends Controller
     public function show(Tovar $tovar)
     {
         abort_unless($tovar->id, 403);
-        return view('tovars.show', compact('tovar'));
+
+        return view('tovars.show', compact('tovar', 'clientIP'));
     }
 
     public function edit(Tovar $tovar)

@@ -13,6 +13,7 @@ class Tovar extends Model
 {
     use SaveTrait;//трайт для вывода товаров по статусу
     
+    
 
 	protected $fillable = [
     		'name',
@@ -46,9 +47,5 @@ class Tovar extends Model
 
     }
 
-    public function isAdmin()
-    {
-        if(Auth::id() === 1)
-            return true;
-    }
+    
 }
