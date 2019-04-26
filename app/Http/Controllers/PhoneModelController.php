@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\PhoneModel;
 use App\Mark;
 
@@ -48,6 +49,8 @@ class PhoneModelController extends Controller
 
     public function edit(PhoneModel $phoneModel)
     {
+        abort_unless(Auth::id() === 1, 403, 'Что-то пошло не так , вернитесь обратно.Для данной страницы нужен доступ администратора');
+        
         $marks = Mark::get();
 
         return view('admin.phoneModel.edit', compact('phoneModel', 'marks'));

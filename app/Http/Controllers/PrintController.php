@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use App\Printt;
 use App\Collection;
 
@@ -52,6 +53,8 @@ class PrintController extends Controller
 
     public function edit(Printt $print)
     {
+        abort_unless(Auth::id() === 1, 403, 'Что-то пошло не так , вернитесь обратно.Для данной страницы нужен доступ администратора');
+        
         $collections = Collection::get();
 
         return view('admin.print.edit', compact('print', 'collections'));

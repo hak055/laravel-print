@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Traits\SaveTrait;
 use App\PhoneModel;
+use App\User;
 use Event;
 
 class Tovar extends Model
@@ -43,5 +44,11 @@ class Tovar extends Model
 
         });
 
+    }
+
+    public function isAdmin()
+    {
+        if(Auth::id() === 1)
+            return true;
     }
 }

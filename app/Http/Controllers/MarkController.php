@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Mark;
 use App\PhoneModel;
 use App\Tovar;
@@ -44,6 +45,7 @@ class MarkController extends Controller
 
     public function edit(Mark $mark)
     {
+        abort_unless(Auth::id() === 1, 403, 'Что-то пошло не так , вернитесь обратно.Для данной страницы нужен доступ администратора');
 
         return view('admin.marka.edit', compact('mark'));
     }

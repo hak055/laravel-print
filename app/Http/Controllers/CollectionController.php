@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Collection;
 use App\Printt;
+
+use App\User;
 
 class CollectionController extends Controller
 {
@@ -64,6 +67,7 @@ class CollectionController extends Controller
      */
     public function edit(Collection $collection)
     {
+        abort_unless(Auth::id() === 1, 403, 'Что-то пошло не так , вернитесь обратно.Для данной страницы нужен доступ администратора');
         $printts = Printt::get();
 
         return view('admin.collection.edit', compact('printts', 'collection'));

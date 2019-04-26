@@ -52,6 +52,8 @@ class TovarController extends Controller
 
     public function edit(Tovar $tovar)
     {
+        abort_unless(Auth::id() === 1, 403, 'Что-то пошло не так , вернитесь обратно.Для данной страницы нужен доступ администратора');
+
         $printts = Printt::get();
         $phoneModels = PhoneModel::get();
 
