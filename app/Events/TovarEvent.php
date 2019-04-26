@@ -45,4 +45,22 @@ class TovarEvent
     {
         return new PrivateChannel('channel-name');
     }
+
+    /**
+
+     * Get the channels the event should broadcast on.
+
+     *
+
+     * @return \Illuminate\Broadcasting\Channel|array
+
+     */
+
+    public function tovarDeleted(Tovar $tovar)
+
+    {
+
+        Log::info("Tovar Deleted Event Fire: ".$tovar);
+
+    }
 }

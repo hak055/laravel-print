@@ -22,6 +22,11 @@ class EventServiceProvider extends ServiceProvider
         'tovar.updated' => [
 
             'App\Events\TovarEvent@tovarUpdated',
+        ],
+        'tovar.deleted' => [
+
+            'App\Events\TovarEvent@tovarDeleted',
+
         ]
     ];
 

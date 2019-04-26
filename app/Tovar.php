@@ -37,5 +37,11 @@ class Tovar extends Model
 
         });
 
+        static::deleted(function($tovar) {
+
+            Event::fire('tovar.deleted', $tovar);
+
+        });
+
     }
 }
