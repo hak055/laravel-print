@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 24 2019 г., 12:35
+-- Время создания: Апр 27 2019 г., 01:48
 -- Версия сервера: 10.2.17-MariaDB-log
 -- Версия PHP: 7.2.10
 
@@ -21,6 +21,29 @@ SET time_zone = "+00:00";
 --
 -- База данных: `laravel-print`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `audits`
+--
+
+CREATE TABLE `audits` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `event` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `auditable_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `auditable_id` bigint(20) UNSIGNED NOT NULL,
+  `old_values` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `new_values` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tags` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -172,7 +195,10 @@ CREATE TABLE `marks` (
 
 INSERT INTO `marks` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'samsung', '2019-04-20 06:42:41', '2019-04-20 06:43:31'),
-(2, 'sony', '2019-04-21 17:29:54', '2019-04-21 17:29:54');
+(2, 'sony', '2019-04-21 17:29:54', '2019-04-21 17:29:54'),
+(3, 'toshiba', '2019-04-26 17:26:36', '2019-04-26 17:26:36'),
+(4, 'Apple', '2019-04-26 19:29:25', '2019-04-26 19:29:25'),
+(5, 'HTC', '2019-04-26 19:30:07', '2019-04-26 19:30:07');
 
 -- --------------------------------------------------------
 
@@ -279,7 +305,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (49, '2017_11_26_015000_create_user_roles_table', 2),
 (50, '2018_03_11_000000_add_user_settings', 2),
 (51, '2018_03_14_000000_add_details_to_data_types_table', 2),
-(52, '2018_03_16_000000_make_settings_value_nullable', 2);
+(52, '2018_03_16_000000_make_settings_value_nullable', 2),
+(53, '2019_04_26_204412_create_audits_table', 3),
+(54, '2019_04_26_215523_add_login_fields_to_users_table', 4);
 
 -- --------------------------------------------------------
 
@@ -412,7 +440,8 @@ CREATE TABLE `phone_models` (
 
 INSERT INTO `phone_models` (`id`, `name`, `mark_id`, `created_at`, `updated_at`) VALUES
 (1, 'smart', 1, '2019-04-20 06:43:00', '2019-04-20 06:43:00'),
-(2, 'k-80', 2, '2019-04-21 17:30:07', '2019-04-21 17:30:07');
+(2, 'k-80', 2, '2019-04-21 17:30:07', '2019-04-21 17:30:07'),
+(3, 'g-55', 1, '2019-04-26 17:26:07', '2019-04-26 17:26:07');
 
 -- --------------------------------------------------------
 
@@ -510,13 +539,11 @@ CREATE TABLE `tovars` (
 --
 
 INSERT INTO `tovars` (`id`, `name`, `status`, `print_id`, `phone_model_id`, `created_at`, `updated_at`) VALUES
-(1, 'Товар_1', 10, 1, 1, '2019-04-20 06:43:12', '2019-04-20 06:43:12'),
-(2, 'Товар_798797', 10, 1, 1, '2019-04-20 16:38:25', '2019-04-20 18:42:45'),
-(3, 'Товар_10', 1, 1, 1, '2019-04-20 19:06:00', '2019-04-20 19:06:00'),
+(1, 'Товар_13', 10, 1, 1, '2019-04-20 06:43:12', '2019-04-24 06:52:29'),
 (4, 'Товар_199999', 10, 1, 2, '2019-04-20 19:15:59', '2019-04-22 10:13:49'),
-(5, 'Товар_4', 10, 1, 2, '2019-04-21 17:30:21', '2019-04-21 17:30:21'),
-(6, 'Товар_1', 10, 1, 2, '2019-04-22 17:22:04', '2019-04-22 17:22:04'),
-(7, 'Товар_1', 10, 1, 1, '2019-04-22 18:12:04', '2019-04-22 18:12:04');
+(6, 'Товар_1', 1, 1, 2, '2019-04-22 17:22:04', '2019-04-26 19:27:10'),
+(7, 'Товар_1', 10, 1, 1, '2019-04-22 18:12:04', '2019-04-22 18:12:04'),
+(8, 'Товар_15', 10, 1, 2, '2019-04-26 19:26:45', '2019-04-26 19:26:45');
 
 -- --------------------------------------------------------
 
@@ -552,17 +579,19 @@ CREATE TABLE `users` (
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `settings` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `last_login_at` datetime DEFAULT NULL,
+  `last_login_ip` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Admin', 'admin@mail.ru', 'users\\April2019\\ooAZkxqrbmhhJYBCNUeZ.png', NULL, '$2y$10$aTBjwPgr.Y8fcW7IeC64/OWF326Fj6XST9rs8jbTsuJklYuyE2wKi', 'FN4d38Upjisw8qcLyHvcW96HxH339HwCnQbicsEseGggH83imOYV0HrwC4gY', '{\"locale\":\"ru\"}', NULL, '2019-04-22 16:46:12'),
-(2, NULL, 'misha', 'hakob055@mail.ru', 'users/default.png', NULL, '$2y$10$FTUdf/LIKvzT34bi0JXbHuziXdsmncXKWzM6hJVJ3ifdN6HvS0bKK', 'R6hYxm4A0HuSRGrTncPq1wKocMyreJkRXJBniH8WejR0yiRVDnuPX4ePhFtU', NULL, '2019-04-20 20:13:05', '2019-04-20 20:13:05'),
-(3, 1, 'admin_menedger', 'your@email.com', 'users/default.png', NULL, '$2y$10$M5ZLTHGSG0JUiyUME/aOgOEZ.frWgojOiCu5WrOMYyE/txRdQiEMC', '23gMlRIjsPdRkOvlZMRocFt9Wf9FAKFSL7KdDwc6XKFm2MS3HwEQENc3JQcz', '{\"locale\":\"ru\"}', '2019-04-22 16:40:58', '2019-04-22 18:14:10');
+INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `last_login_at`, `last_login_ip`) VALUES
+(1, 1, 'Admin', 'admin@mail.ru', 'users\\April2019\\ooAZkxqrbmhhJYBCNUeZ.png', NULL, '$2y$10$aTBjwPgr.Y8fcW7IeC64/OWF326Fj6XST9rs8jbTsuJklYuyE2wKi', 'yLHjTa1o3Y8E9uLzshsJoZTcFvpmxvUKTQ63aWW4lZE9JS507kSTYTOOxIOO', '{\"locale\":\"ru\"}', NULL, '2019-04-26 19:23:13', '2019-04-26 22:23:13', '127.0.0.1'),
+(2, NULL, 'misha', 'hakob055@mail.ru', 'users/default.png', NULL, '$2y$10$FTUdf/LIKvzT34bi0JXbHuziXdsmncXKWzM6hJVJ3ifdN6HvS0bKK', 'c62xXbnxeOjVXUjUNhrTyiQQuukDvlYWgNUq4ndFAFn43U57StYQc6Xz48h5', NULL, '2019-04-20 20:13:05', '2019-04-26 19:21:57', '2019-04-26 22:21:57', '127.0.0.1'),
+(3, 1, 'admin_menedger', 'your@email.com', 'users/default.png', NULL, '$2y$10$M5ZLTHGSG0JUiyUME/aOgOEZ.frWgojOiCu5WrOMYyE/txRdQiEMC', '23gMlRIjsPdRkOvlZMRocFt9Wf9FAKFSL7KdDwc6XKFm2MS3HwEQENc3JQcz', '{\"locale\":\"ru\"}', '2019-04-22 16:40:58', '2019-04-22 18:14:10', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -585,6 +614,14 @@ INSERT INTO `user_roles` (`user_id`, `role_id`) VALUES
 --
 -- Индексы сохранённых таблиц
 --
+
+--
+-- Индексы таблицы `audits`
+--
+ALTER TABLE `audits`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `audits_auditable_type_auditable_id_index` (`auditable_type`,`auditable_id`),
+  ADD KEY `audits_user_id_user_type_index` (`user_id`,`user_type`);
 
 --
 -- Индексы таблицы `collections`
@@ -725,6 +762,12 @@ ALTER TABLE `user_roles`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `audits`
+--
+ALTER TABLE `audits`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT для таблицы `collections`
 --
 ALTER TABLE `collections`
@@ -752,7 +795,7 @@ ALTER TABLE `data_types`
 -- AUTO_INCREMENT для таблицы `marks`
 --
 ALTER TABLE `marks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `menus`
@@ -770,7 +813,7 @@ ALTER TABLE `menu_items`
 -- AUTO_INCREMENT для таблицы `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT для таблицы `permissions`
@@ -782,7 +825,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT для таблицы `phone_models`
 --
 ALTER TABLE `phone_models`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `prints`
@@ -806,7 +849,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT для таблицы `tovars`
 --
 ALTER TABLE `tovars`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `translations`
