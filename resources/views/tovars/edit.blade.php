@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title',($tovar->exists ? 'Editing' : 'Creating'))
+@section('title', ($tovar->exists ? __('Editing') : __('Creating')))
 
 @section('content')
     <div class="container">
@@ -9,7 +9,7 @@
                 <div class="float-right">
                     @if($tovar->exists and Auth::user()->id === 1)
                         <a class="text-danger" href="{{ route('tovar.destroy', $tovar) }}"
-                           onclick="event.preventDefault(); if(confirm('@lang('Delete')?')) document.getElementById('destroy-form').submit()"
+                           onclick="event.preventDefault(); if(confirm('@lang('DeleteConfirm')?')) document.getElementById('destroy-form').submit()"
                         >@lang('Delete')</a>
                         <form id="destroy-form" class="d-none" method="POST"
                               action="{{ route('tovar.destroy', $tovar) }}">

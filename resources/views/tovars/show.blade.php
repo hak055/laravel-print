@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
-@section('title',('Товар'))
+@section('title', __('Tovar'))
 
 @section('content')
+
 	<div class="container">
+		@lang('Tovar')
 		<div class="card card-default mb-3">
-			<h2>Название товара:-{{ $tovar->name }}</h2>
+			<h2>@lang('TovarName')-{{ $tovar->name }}</h2>
 			<div class="card-header clearfix">
 				<div class="col-md-8">
 					<div class="row">
@@ -24,7 +26,7 @@
 					</div>
 				</div>
 				@if(Auth::id() === 1)
-					<a href="{{route('tovar.edit', $tovar)}}" class="btn btn-secondary">Редактировать</a>
+					<a href="{{route('tovar.edit', $tovar)}}" class="btn btn-secondary">@lang('Edit')</a>
 				@endif
 			</div>
 		</div>
