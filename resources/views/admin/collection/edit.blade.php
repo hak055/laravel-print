@@ -2,24 +2,24 @@
 
 @php /** @var \App\Collection $collection */ @endphp
 
-@section('title',($collection->exists ? 'Editing' : 'Creating'))
+@section('title', ($collection->exists ? __('Editing') : __('Creating')))
 
 @section('content')
   <div class="container">
     <div class="card card-default mb-3">
-      <div>Колекция</div>
+      <div>@lang('collection')</div>
       <div class="card-header clearfix">
         <div class="float-right">
-          @if($collection->exists)
+          <!-- @if($collection->exists)
             <a class="text-danger" href="{{ route('collection.destroy', $collection) }}"
-               onclick="event.preventDefault(); if(confirm('@lang('Удалить?')?')) document.getElementById('destroy-form').submit()"
-            >Delete</a>
+               onclick="event.preventDefault(); if(confirm('@lang('Delete')?')) document.getElementById('destroy-form').submit()"
+            >@lang('Delete')</a>
             <form id="destroy-form" class="d-none" method="POST"
                   action="{{ route('collection.destroy', $collection) }}">
               @method('DELETE')
               @csrf
             </form>
-          @endif
+          @endif -->
         </div>
       </div>
       <div class="card-body">

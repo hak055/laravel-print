@@ -2,11 +2,12 @@
 
 @php /** @var \App\Mark $mark */ @endphp
 
-@section('title',($mark->exists ? 'Editing' : 'Creating'))
+@section('title',($mark->exists ? __('Editing') : __('Creating')))
 
 @section('content')
-  <div class="container">
+  <div class="container">    
     <div class="card card-default mb-3">
+      @lang('Mark')
       <div class="card-header clearfix">
         <div class="float-right">
           @if($mark->exists and Auth::user()->id === 1)
@@ -33,7 +34,7 @@
         @endif    
                {{ csrf_field() }}
                 <div class="form-group">
-                    <label for="name">Название Марки телефона:</label>
+                    <label for="name">@lang('NameMarkPhone')</label>
                     <input type="text" class="form-control" name="name" value="{{$mark->exists ? $mark->name : ''}}" placeholder="Введите марку телефона..." required>
                 </div>
                 
