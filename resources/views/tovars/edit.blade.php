@@ -38,7 +38,8 @@
                                     <label for="name">Название товара:</label>
                                     <input type="text" class="form-control" name="name"
                                            value="{{$tovar->exists ? $tovar->name : ''}}" placeholder="{{$tovar->name}}"
-                                           required>
+                                           >
+                                    <small class="text-danger">{{ $errors->first('name') }}</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Статус товара:</label>
@@ -47,6 +48,7 @@
                                         <option value="10">Активный</option>
                                         <option value="1">Неактивный</option>
                                     </select>
+                                    <small class="text-danger">{{ $errors->first('status') }}</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Принт товара:</label>
@@ -67,6 +69,7 @@
                                             @endforeach
                                             @endif
                                         </select>
+                                        <small class="text-danger">{{ $errors->first('print_id') }}</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Модель товара:</label>
@@ -88,6 +91,7 @@
                                             @endforeach
                                             @endif
                                         </select>
+                                        <small class="text-danger">{{ $errors->first('phone_model_id') }}</small>
                                 </div>
 
 

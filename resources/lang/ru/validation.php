@@ -132,8 +132,17 @@ return [
     |
     */
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'name' =>  [
+            'required' => 'Название товара обязательно для заполнения.',
+        ],
+        'status' => [
+            'required' => 'Статус обязательно для выбора.',
+        ],
+        'print_id' => [
+            'required' => 'Принт обязательно для выбора.',
+        ],
+        'phone_model_id' => [
+            'required' => 'Модель телефона обязательно для выбора.',
         ],
     ],
     /*
