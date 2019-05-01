@@ -44,9 +44,9 @@
                                 <div class="form-group">
                                     <label for="name">Статус товара:</label>
                                     <select class="form-control" name="status">
-                                        <option disabled selected>выберите статус</option>
-                                        <option value="10">Активный</option>
-                                        <option value="1">Неактивный</option>
+                                        <option value="">выберите статус</option>
+                                        <option value="10" {{ old('status', $tovar->status) == 10 ? 'selected' : '' }}>Активный</option>
+                                        <option value="1" {{ old('status', $tovar->status) == 1 ? 'selected' : '' }}>Неактивный</option>
                                     </select>
                                     <small class="text-danger">{{ $errors->first('status') }}</small>
                                 </div>
@@ -63,7 +63,7 @@
                                         <select class="form-control" name="print_id">
                                             <option disabled selected>выберите принт</option>
                                             @foreach($printts as $printt)
-                                                <option value="{{$printt->id}}">
+                                                <option value="{{$printt->id}}" {{(old('print_id')==$printt->id)? 'selected':''}}>
                                                     {{$printt->name}}
                                                 </option>
                                             @endforeach
