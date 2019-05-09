@@ -64,7 +64,7 @@ class PhoneModelController extends Controller
 
         $phoneModel->fill($this->validateWith([
 
-            'name' => 'required',
+            'name' => ['required', 'unique:phone_models'],//Поле обязательное и проверка на уникальность
             'mark_id' => 'required|exists:marks,id'
         ]))->save();
 

@@ -58,7 +58,7 @@ class MarkController extends Controller
 
         $mark->fill($this->validateWith([
 
-            'name' => 'required',
+            'name' => ['required', 'unique:marks'],
         ]))->save();
 
         return redirect()->route('mark.show', $mark);

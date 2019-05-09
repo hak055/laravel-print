@@ -36,6 +36,7 @@
                                     <label for="name">Модель телефона:</label>
                                     <input type="text" class="form-control" name="name" value=""
                                            placeholder="{{$phoneModel->name}}" required>
+                                    <small class="text-danger">{{ $errors->first('name') }}</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Марка телефона:</label>

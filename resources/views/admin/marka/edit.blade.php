@@ -35,7 +35,8 @@
                {{ csrf_field() }}
                 <div class="form-group">
                     <label for="name">@lang('NameMarkPhone')</label>
-                    <input type="text" class="form-control" name="name" value="{{$mark->exists ? $mark->name : ''}}" placeholder="Введите марку телефона..." required>
+                    <input type="text" class="form-control" name="name" value="{{$mark->exists ? $mark->name : ''}}" placeholder="Введите марку телефона...">
+                    <small class="text-danger">{{ $errors->first('name') }}</small>
                 </div>
                 
               
