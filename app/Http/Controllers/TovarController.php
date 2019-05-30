@@ -22,18 +22,7 @@ class TovarController extends Controller
 
         $tovars = Tovar::when(Auth::id() != 1, function (Builder $builder){
             return $builder->where('status', '=', '10');
-        })->when(request('status'), function (Builder $builder, $status) {
-            return $builder->where('status', '=', $status ?? 0);
-
-        })->when(request('marka'), function (Builder $builder) {
-
-            $model_id = PhoneModel::where('mark_id', request('marka'))->first();
-
-            
-                   return $builder->where('phone_model_id', $model_id->id ?? null);
-               
-
-        })->get();
+        })->Status(request('status'))->Marka(request('marka'))->get();
 
         return view('tovars.tovar', compact('tovars', 'marks'));
     }
